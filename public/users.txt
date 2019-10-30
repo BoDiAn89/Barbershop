@@ -1,0 +1,5 @@
+User: bodian, phone: +7 (968) 165-1322, date and time: 2.11.19 12:00.
+User: the_great_cthulhu111, phone: +79999999999, date and time: 1.11.19 12:00.
+User: Bla, phone: +69998887744, date and time: 24.11.19, barber: .
+User: 1111, phone: 22222, date and time: 33333, barber: Gus Fring.
+User: bodian, phone: +7 (968) 165-1322, date and time: 1.11.19 12:00, barber: Walter White.

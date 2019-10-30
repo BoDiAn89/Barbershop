@@ -1,0 +1,21 @@
+<form action="/contact" enctype="text/plain" id="email" method="post" name="email">
+  <fieldset>
+    <ol>
+      <li>
+        <p><label>Ваше имя:</label>
+        <input class="form-control" name="name" type="text" placeholder="Enter your name"></input></p>
+      </li>
+      <li>
+        <p><label>Email адрес:</label>
+        <input class="form-control" name="mail" type="text" placeholder="Enter email"></input>
+        <small class="form-text text-muted">Не ссы, мы не передадим ваш email мутным типам.</small></p>
+      </li>
+      <li>
+        <p><label>Сообщение:</label></p>
+        <textarea name="body" type="text" rows="3"></textarea>
+      </li>
+      <p><button type="submit" class="btn btn-primary">Отправить</button></p>
+    </ol>
+     
+  </fieldset>
+</form>
