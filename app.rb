@@ -7,6 +7,7 @@ get '/' do
 end
 
 get '/about' do
+	@error = 'something wrong!'
 	erb :about
 end
 
@@ -19,29 +20,33 @@ get '/contacts' do
 end
 
 post '/visit' do
-
-	  # user_name, phone, date_time
-	@user_name = params[:username]
+	
+	@username = params[:username]
 	@phone = params[:phone]
-	@date_time = params[:datetime]
+	@datetime = params[:datetime]
 	@barber = params[:barber]
+	@color = params[:color]
 
+	# хеш
+	hh = { 	:username => 'Ваше имя',
+			:phone => 'Ваш телефон',
+			:datetime => 'Введите дату и время' }
 
-	  # запишем в файл то, что ввел клиент
-	f = File.open './public/users.txt', 'a'
-	f.write "User: #{@user_name}, phone: #{@phone}, date and time: #{@date_time}, barber: #{@barber}.\n"
-	f.close
+	@error = hh.select {|key,_| params[key] == ""}.values.join(", ")
 
-  erb "Thank you!\nDear #{@user_name}, we wait you at #{@date_time}"
+	if @error != ''
+		return erb :visit
+	end
+
+	erb "OK, username is #{@username}, #{@phone}, #{@datetime}, #{@barber}, #{@color}"
 end
 
 post '/contact' do
-    post '/contact' do 
+ 
 require 'pony'
 Pony.mail(
    :name => params[:name],
   :mail => params[:mail],
-  :body => params[:body],
   :to => 'bodian89@gmail.com',
   :subject => params[:name] + " has contacted you",
   :body => params[:message],
