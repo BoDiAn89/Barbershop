@@ -1,16 +1,13 @@
 <h2>Список клиентов</h2>
 
-<%= @results %>
-
-
 <table class="table table-striped">
 	<thead>
         <tr>
-          <th>Name</th>
-          <th>Phone</th>
-          <th>DateTime</th>
-          <th>Barber</th>
-          <th>Color</th>
+          <th>Имя</th>
+          <th>Телефон</th>
+          <th>Дата записи</th>
+          <th>Парикмахер</th>
+          <th>Цвет</th>
         </tr>
     </thead>
     <tbody>  
@@ -20,7 +17,7 @@
 			  <td><%= row['Phone'] %></td>
 			  <td><%= row['Datestamp'] %></td>
 			  <td><%= row['Barber'] %></td>
-			  <td><%= row['Color'] %></td>
+			  <td style="background-color: <%= row['Color']%>"><%= row['Color'] %></td>
 			</tr>
 		<% end %>
 	</tbody>
