@@ -9,18 +9,40 @@ def get_db
   return db
 end
 
+def is_barber_exists? db, name
+	db.execute('select *  from Barbers where name=?', [name]).length > 0
+end
+
+def seed_db db, barbers
+	barbers.each do |barber|
+		if !is_barber_exists? db, barber
+			db.execute 'insert into Barbers (name) values (?)', [barber]
+		end
+	end
+end
+
 configure do
 	db = get_db
 	db.execute 'CREATE TABLE IF NOT EXISTS
-	"Users" 
-	(
-		"Id" INTEGER PRIMARY KEY AUTOINCREMENT,
-		"Username" TEXT,
-		"Phone" TEXT,
-		"Datestamp" TEXT,
-		"Barber" TEXT,
-		"Color" TEXT
-	)'
+		"Users" 
+		(
+			"Id" INTEGER PRIMARY KEY AUTOINCREMENT,
+			"Username" TEXT,
+			"Phone" TEXT,
+			"Datestamp" TEXT,
+			"Barber" TEXT,
+			"Color" TEXT
+		)'
+
+	db.execute 'CREATE TABLE IF NOT EXISTS
+		"Barbers" 
+		(
+			"Id" INTEGER PRIMARY KEY AUTOINCREMENT,
+			"Name" TEXT
+		)'
+	
+
+	seed_db db, ['Jessie Pinkman', 'Walter Wight', 'Gus Fring', 'Mike Ehrmantraut']
 	db.close
 end
 
@@ -71,7 +93,7 @@ post '/visit' do
 		)
 		values (?, ?, ?, ?, ?)', [@username, @phone, @datetime, @barber, @color]
 
-	erb "OK, username is #{@username}, #{@phone}, #{@datetime}, #{@barber}, #{@color}"
+	erb "Хорошо, #{@username}, мы ждем вас #{@datetime}, к мастеру #{@barber}"
 end
 
 post '/contact' do
