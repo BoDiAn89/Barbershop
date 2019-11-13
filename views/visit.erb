@@ -7,7 +7,7 @@
   $(function(){
     
     $('#color').simplecolorpicker();
-    $('#datetimepicker2').datetimepicker({locale: 'ru'});
+    $('#datetimepicker').datetimepicker();
    
   });
 
@@ -28,14 +28,8 @@
 
   <div class="form-group">
     <label>Когда вас ждать?</label>
-      <div class='input-group date' id='datetimepicker2'>
-            <input id="datetimepicker" name="datetime" type='text' class="form-control" placeholder="Введите дату и время" />
-            <span class="input-group-addon">
-                <span class="glyphicon glyphicon-calendar"></span>
-            </span>
-        </div>
+      <input id="datetimepicker" name="datetime" type="text" class="form-control" placeholder="Введите дату и время" value="<%= @datetime %>">
   </div>
-
 
   <div class="form-group">
     <label>Выберите мастера:</label><br>
