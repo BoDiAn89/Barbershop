@@ -2,7 +2,6 @@
 <h2>Записаться</h2>
 <p>На этой странице вы сможете записаться к нам в Barber Shop</p>
 
-
 <script type="text/javascript">
   $(function(){
     
@@ -31,9 +30,9 @@
   <div class="form-group">
     <label>Выберите мастера:</label><br>
     <select name="barber" class="form-control">
-      <option value = 'Walter White'<%= @barber == 'Walter White' ? 'selected' : ''%>>Walter White</option>
-      <option value = 'Jessie Pinkman'<%= @barber == 'Jessie Pinkman' ? 'selected' : ''%>>Jessie Pinkman</option>
-      <option value = 'Gus Fring'<%= @barber == 'Gus Fring' ? 'selected' : ''%>>Gus Fring</option>
+      <% @barbers.each do |item| %>
+        <option <%= @barber == item['Name'] ? 'selected' : '' %>><%= item['Name'] %></option>
+      <% end %>
     </select>
   </div>
 
