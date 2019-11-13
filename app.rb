@@ -4,7 +4,9 @@ require 'sinatra/reloader'
 require 'sqlite3'
 
 def get_db
-  return SQLite3::Database.new 'barbershop.db'
+  db = SQLite3::Database.new 'barbershop.db'
+  db.results_as_hash = true
+  return db
 end
 
 configure do
@@ -76,7 +78,7 @@ post '/contact' do
  
 require 'pony'
 Pony.mail(
-   :name => params[:name],
+  :name => params[:name],
   :mail => params[:mail],
   :to => 'bodian89@gmail.com',
   :subject => params[:name] + " has contacted you",
@@ -101,6 +103,10 @@ redirect '/success'
   	erb "Thank you!"
 end
 
-get '/admin/showusers' do
-  erb "Hello World"
+get '/showusers' do
+	db = get_db
+
+	@results = db.execute 'select * from users order by Id desc'
+
+	erb :showusers
 end
