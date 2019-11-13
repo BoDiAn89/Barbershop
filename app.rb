@@ -100,3 +100,7 @@ redirect '/success'
 
   	erb "Thank you!"
 end
+
+get '/admin/showusers' do
+  erb "Hello World"
+end
